@@ -9,8 +9,8 @@
 | | ค่า |
 |---|---|
 | Server | `app.workshop-deploy.site` |
-| Username | `user01` – `user20` (ได้รับจาก admin) |
-| Password | ได้รับจาก admin |
+| Username | `user01` – `user20` (ได้รับจาก ผู้บรรยาย) |
+| Password | ได้รับจาก ผู้บรรยาย |
 | API URL | `https://app.workshop-deploy.site/userXX/api/` |
 | Swagger | `https://app.workshop-deploy.site/userXX/api/swagger` |
 | Frontend URL | `https://app.workshop-deploy.site/userXX/app/` |
