@@ -207,7 +207,7 @@ tail -f /tmp/fe_userXX.log
 | หน้าเว็บขาว (blank page) | `tail -f /tmp/fe_userXX.log` ดู error |
 | ข้อมูลไม่ขึ้นใน Vue | ตรวจ API URL ใน config ของ frontend |
 | `permission denied` | แจ้ง ผู้บรรยาย |
-| `could not find .csproj` | `cd` เข้า folder project ให้ถูกก่อน |
+| `could not find .csproj` | ลองเช็คว่าเข้า folder project ถูกไหม |
 
 ---
 
