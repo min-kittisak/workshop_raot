@@ -111,7 +111,6 @@ deploy
 รอสักครู่ระบบจะ build และ start ให้อัตโนมัติ เมื่อสำเร็จ:
 
 ```
-✅  .NET API พร้อมแล้ว!
 🌐 URL : https://app.workshop-deploy.site/user01/api/
 📝 Log : tail -f /tmp/api_user01.log
 ```
@@ -130,10 +129,10 @@ cd ~/my-vue-app
 deploy
 ```
 
-ครั้งแรกอาจใช้เวลา 1–2 นาที เพราะต้อง `npm install` ก่อน เมื่อสำเร็จ:
+ครั้งแรกอาจใช้เวลา 1–2 นาที เพราะต้อง `npm install` ก่อน เมื่อเสร็จแล้ว:
 
 ```
-✅  Frontend พร้อมแล้ว!
+✅  Frontend
 🌐 URL : https://app.workshop-deploy.site/user01/app/
 📝 Log : tail -f /tmp/fe_user01.log
 ```
