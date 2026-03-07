@@ -202,11 +202,11 @@ tail -f /tmp/fe_userXX.log
 
 | อาการ | วิธีแก้ |
 |-------|--------|
-| `Build failed!` | ดู error ด้านบน แล้วแจ้ง developer |
+| `Build failed!` | ดู error ด้านบน แล้วแจ้ง ผู้บรรยาย |
 | `Start ไม่ได้` | `tail -f /tmp/api_userXX.log` ดู error |
 | หน้าเว็บขาว (blank page) | `tail -f /tmp/fe_userXX.log` ดู error |
 | ข้อมูลไม่ขึ้นใน Vue | ตรวจ API URL ใน config ของ frontend |
-| `permission denied` | แจ้ง admin |
+| `permission denied` | แจ้ง ผู้บรรยาย |
 | `could not find .csproj` | `cd` เข้า folder project ให้ถูกก่อน |
 
 ---
