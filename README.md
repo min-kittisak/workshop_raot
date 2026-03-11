@@ -13,7 +13,7 @@
 |---|---|
 | Server | `app.workshop-deploy.site` |
 | Username | `user01` – `user20` |
-| Password | ได้รับจากผู้บรรยาย |
+| Password | จาก Sheet Workshop User |
 | API URL | `https://app.workshop-deploy.site/userXX/api/` |
 | Swagger | `https://app.workshop-deploy.site/userXX/api/swagger` |
 | Frontend URL | `https://app.workshop-deploy.site/userXX/app/` |
@@ -36,9 +36,9 @@
 ssh userXX@79.108.225.69
 ```
 
-ระบบจะถามรหัสผ่าน — พิมพ์แล้วกด Enter (ตัวอักษรจะไม่แสดง นั่นคือปกติ)
+ระบบจะถามรหัสผ่าน — พิมพ์แล้วกด Enter (ตัวอักษรจะไม่แสดง)
 
-เมื่อเข้าสำเร็จจะเห็นข้อมูลของคุณขึ้นมาทันที:
+เมื่อเข้าสำเร็จจะเห็นข้อมูลของผู้ใช้นั้น ๆ
 
 ```
 ══════════════════════════════════════════════════════════
@@ -53,7 +53,7 @@ ssh userXX@79.108.225.69
 ══════════════════════════════════════════════════════════
 ```
 
-ดูข้อมูลนี้ซ้ำได้ตลอดด้วย:
+ดูข้อมูลนี้ซ้ำได้ตลอดด้วย
 ```bash
 cat ~/.welcome
 ```
@@ -69,12 +69,12 @@ git clone <URL-ของ-API-repo>
 git clone <URL-ของ-Frontend-repo>
 ```
 
-ตรวจสอบว่า clone มาแล้ว:
+ตรวจสอบว่า clone มาแล้ว
 ```bash
 ls
 ```
 
-จะเห็น folder ของทั้งสอง project ขึ้นมา เช่น:
+จะเห็น folder ของทั้งสอง project ขึ้นมา เช่น
 ```
 my-dotnet-api   my-vue-app
 ```
@@ -83,14 +83,14 @@ my-dotnet-api   my-vue-app
 
 ## ขั้นตอน 4 — ตั้งค่า Connection String ใน API
 
-ก่อน deploy ต้องให้ .NET รู้ว่าจะเชื่อมต่อ database ไหน แก้ไฟล์ `appsettings.json` ใน project API:
+ก่อน deploy ต้องให้ .NET รู้ว่าจะเชื่อมต่อ database ไหน แก้ไฟล์ `appsettings.json` ใน project API
 
 ```bash
 cd my-dotnet-api
 nano appsettings.json
 ```
 
-หาบรรทัด `ConnectionStrings` แล้วแก้เป็น:
+หาบรรทัด `ConnectionStrings` แล้วแก้เป็น
 
 ```json
 "ConnectionStrings": {
@@ -111,14 +111,14 @@ cd ~/my-dotnet-api
 deploy
 ```
 
-รอสักครู่ระบบจะ build และ start ให้อัตโนมัติ เมื่อสำเร็จ:
+รอสักครู่ระบบจะ build และ start ให้อัตโนมัติ เมื่อสำเร็จ
 
 ```
 🌐 URL : https://app.workshop-deploy.site/user01/api/
 📝 Log : tail -f /tmp/api_user01.log
 ```
 
-ทดสอบเปิด Swagger ใน browser:
+ทดสอบเปิด Swagger ใน browser
 ```
 https://app.workshop-deploy.site/userXX/api/swagger
 ```
@@ -132,7 +132,7 @@ cd ~/my-vue-app
 deploy
 ```
 
-ครั้งแรกอาจใช้เวลา 1–2 นาที เพราะต้อง `npm install` ก่อน เมื่อเสร็จแล้ว:
+ครั้งแรกอาจใช้เวลา 1–2 นาที เพราะต้อง `npm install` ก่อน เมื่อเสร็จแล้ว
 
 ```
 ✅  Frontend
@@ -159,7 +159,7 @@ mystatus
 
 ## อัปเดต Code ใหม่
 
-เมื่อแก้ code และ push ขึ้น Git แล้ว ทำแบบนี้เพื่ออัปเดตบน server:
+เมื่อแก้ code และ push ขึ้น Git แล้ว ทำแบบนี้เพื่ออัปเดตบน server
 
 ```bash
 # อัปเดต API
@@ -205,7 +205,7 @@ tail -f /tmp/fe_userXX.log
 
 | อาการ | วิธีแก้ |
 |-------|--------|
-| `Build failed!` | ดู error ด้านบน แล้วแจ้ง ผู้บรรยาย |
+| `Build failed!` | ดู error ด้านบน แล้วแจ้งผู้บรรยาย |
 | `Start ไม่ได้` | `tail -f /tmp/api_userXX.log` ดู error |
 | หน้าเว็บขาว (blank page) | `tail -f /tmp/fe_userXX.log` ดู error |
 | ข้อมูลไม่ขึ้นใน Vue | ตรวจ API URL ใน config ของ frontend |
