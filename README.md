@@ -74,7 +74,7 @@ ssh userXX@79.108.225.69
   Frontend URL: https://app.workshop-deploy.site/userXX/app/
   Database    : user01_db
   DB ConnStr  : Host=localhost;Port=5432;Database=userXX_db;
-                Username=user01;Password=Workshop@2025
+                Username=userXX;Password=Workshop@2025
 ══════════════════════════════════════════════════════════
 ```
 
@@ -139,8 +139,8 @@ deploy
 รอสักครู่ระบบจะ build และ start ให้อัตโนมัติ เมื่อสำเร็จ
 
 ```
-🌐 URL : https://app.workshop-deploy.site/user01/api/
-📝 Log : tail -f /tmp/api_user01.log
+🌐 URL : https://app.workshop-deploy.site/userXX/api/
+📝 Log : tail -f /tmp/api_userXX.log
 ```
 
 ทดสอบเปิด Swagger ใน browser
@@ -162,7 +162,7 @@ deploy
 ```
 ✅  Frontend
 🌐 URL : https://app.workshop-deploy.site/userXX/app/
-📝 Log : tail -f /tmp/fe_user01.log
+📝 Log : tail -f /tmp/fe_userXX.log
 ```
 
 เปิด URL ใน browser ได้เลย
@@ -176,8 +176,8 @@ mystatus
 ```
 
 ```
-  .NET API : ● RUNNING  →  https://app.workshop-deploy.site/user01/api/
-  Frontend : ● RUNNING  →  https://app.workshop-deploy.site/user01/app/
+  .NET API : ● RUNNING  →  https://app.workshop-deploy.site/userXX/api/
+  Frontend : ● RUNNING  →  https://app.workshop-deploy.site/userXX/app/
 ```
 
 ---
