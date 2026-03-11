@@ -10,6 +10,13 @@
 
 ---
 
+### วิธีการ Copy & Paste บน CMD / Console
+```bash
+Copy => คลุมดำที่ข้อความที่ต้องการแล้วกดคลิกขวา (Right-Click)
+Paste => คลิกขวา (Right-Click) หรือ Shift+Insert
+```
+---
+
 ### แก้ไข Code ของ Frontend
 #### .env โดย XX แทนด้วยเลข User ของเรา
 ```bash
