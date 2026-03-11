@@ -7,6 +7,31 @@
 
 ---
 
+### แก้ไข Code ของ Frontend
+#### .env โดย XX แทนด้วยเลข User ของเรา
+```bash
+VITE_API_URL=https://app.workshop-deploy.site/user999/api/api
+VITE_BASE_PATH=/userXX/app/
+```
+
+#### src/router/index.ts
+เพิ่ม import.meta.env.BASE_URL
+```ts
+import {createRouter , createWebHistory} from 'vue-router'
+import UserManagement from '../views/UserManagement.vue'
+
+const router = createRouter({
+    history: createWebHistory(import.meta.env.BASE_URL), // <-- แก้ไขบรรทัดนี้
+    routes:[{
+        path: '/',
+        name: 'Users',
+        component: UserManagement
+    }]
+})
+export default router
+```
+---
+
 ## ข้อมูลที่ต้องรู้ก่อน
 
 | | ค่า |
