@@ -1,6 +1,9 @@
 # 🚀 Workshop: Deploy .NET + Vue บน Linux VM
 
 ---
+### FYI
+หลังจากจบกิจกรรม Workshop (16:00 - 16:30 น.) ข้อมูลทั้งหมด รวมถึง VM จะถูกลบทิ้งทันที
+---
 
 ### Users สำหรับใช้เข้า VM
 👤 [Workshop Users](https://docs.google.com/spreadsheets/d/1e1bCiAIanqBuPEPmLy0a--kssAINRyEUJ7oKzu6RJ7E/edit?gid=18468552#gid=18468552)
