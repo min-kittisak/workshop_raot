@@ -1,7 +1,5 @@
 # 🚀 Workshop: Deploy .NET + Vue บน Linux VM
 
-คู่มือสำหรับผู้เข้าร่วม workshop — ทุกอย่างที่ต้องรู้มีในหน้านี้หน้าเดียว
-
 ---
 
 ## ข้อมูลที่ต้องรู้ก่อน
@@ -30,7 +28,7 @@
 ## ขั้นตอน 2 — SSH เข้า Server
 
 ```bash
-ssh userXX@app.workshop-deploy.site
+ssh userXX@79.108.225.69
 ```
 
 ระบบจะถามรหัสผ่าน — พิมพ์แล้วกด Enter (ตัวอักษรจะไม่แสดง นั่นคือปกติ)
@@ -40,12 +38,12 @@ ssh userXX@app.workshop-deploy.site
 ```
 ══════════════════════════════════════════════════════════
   Welcome to Workshop! 🚀
-  Username    : user01
-  API URL     : https://app.workshop-deploy.site/user01/api/
-  Swagger     : https://app.workshop-deploy.site/user01/api/swagger
-  Frontend URL: https://app.workshop-deploy.site/user01/app/
+  Username    : userXX
+  API URL     : https://app.workshop-deploy.site/userXX/api/
+  Swagger     : https://app.workshop-deploy.site/userXX/api/swagger
+  Frontend URL: https://app.workshop-deploy.site/userXX/app/
   Database    : user01_db
-  DB ConnStr  : Host=localhost;Port=5432;Database=user01_db;
+  DB ConnStr  : Host=localhost;Port=5432;Database=userXX_db;
                 Username=user01;Password=Workshop@2025
 ══════════════════════════════════════════════════════════
 ```
@@ -133,7 +131,7 @@ deploy
 
 ```
 ✅  Frontend
-🌐 URL : https://app.workshop-deploy.site/user01/app/
+🌐 URL : https://app.workshop-deploy.site/userXX/app/
 📝 Log : tail -f /tmp/fe_user01.log
 ```
 
