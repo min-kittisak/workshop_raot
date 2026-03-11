@@ -7,8 +7,8 @@
 | | ค่า |
 |---|---|
 | Server | `app.workshop-deploy.site` |
-| Username | `user01` – `user20` (ได้รับจาก ผู้บรรยาย) |
-| Password | ได้รับจาก ผู้บรรยาย |
+| Username | `user01` – `user20` |
+| Password | ได้รับจากผู้บรรยาย |
 | API URL | `https://app.workshop-deploy.site/userXX/api/` |
 | Swagger | `https://app.workshop-deploy.site/userXX/api/swagger` |
 | Frontend URL | `https://app.workshop-deploy.site/userXX/app/` |
