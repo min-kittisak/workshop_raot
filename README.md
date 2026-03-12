@@ -279,7 +279,7 @@ mystatus → ตรวจสอบ RUNNING ทั้งคู่
 #### .env — แทน `XX` ด้วยเลข User ของคุณ
 
 ```bash
-VITE_API_URL=https://app.workshop-deploy.site/userXX/api/api
+VITE_API_URL=https://app.workshop-deploy.site/user999/api/api
 VITE_BASE_PATH=/userXX/app/
 ```
 
