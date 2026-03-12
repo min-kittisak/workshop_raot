@@ -6,7 +6,7 @@
 
 - [ข้อมูลที่ต้องรู้ก่อน](#ข้อมูลที่ต้องรู้ก่อน)
 - [ขั้นตอน 1 — เปิด Terminal](#ขั้นตอน-1--เปิด-terminal)
-- [ขั้นตอน 2 — SSH เข้า Server](#ขั้นตอน-2--ssh-เข้า-server)
+- [ขั้นตอน 2 — เข้า Terminal](#ขั้นตอน-2--เข้า-terminal)
 - [ขั้นตอน 3 — Clone Project](#ขั้นตอน-3--clone-project)
 - [ขั้นตอน 4 — ตั้งค่า Connection String ใน API](#ขั้นตอน-4--ตั้งค่า-connection-string-ใน-api)
 - [ขั้นตอน 5 — Deploy API (.NET)](#ขั้นตอน-5--deploy-api-net)
@@ -18,8 +18,7 @@
 - [Error ที่พบบ่อย](#error-ที่พบบ่อย)
 - [สรุป Workflow ทั้งหมด](#สรุป-workflow-ทั้งหมด)
 - [แก้ไข Code Frontend](#แก้ไข-code-frontend)
-- [วิธีการ Copy & Paste บน CMD](#วิธีการ-copy--paste-บน-cmd)
-- [แก้ไขปัญหา SSH เข้าไม่ได้](#แก้ไขปัญหา-ssh-เข้าไม่ได้)
+- [วิธีการ Copy & Paste บน CMD / Terminal](#วิธีการ-copy--paste-บน-cmd--terminal)
 - [Users และข้อมูล Workshop](#users-และข้อมูล-workshop)
 
 ---
@@ -35,6 +34,7 @@
 | Swagger | `https://app.workshop-deploy.site/userXX/api/swagger` |
 | Frontend URL | `https://app.workshop-deploy.site/userXX/app/` |
 | Database | `userXX_db` |
+| **Web Terminal** | `https://app.workshop-deploy.site/terminal/` |
 
 > แทน `userXX` ด้วย username ของคุณตลอดทั้งเอกสารนี้
 
@@ -42,12 +42,22 @@
 
 ## ขั้นตอน 1 — เปิด Terminal
 
+เลือกวิธีที่สะดวกได้เลย **แนะนำ Web Terminal** เพราะไม่ต้องติดตั้งอะไรเพิ่ม
+
+### 🌐 วิธีที่ 1 — Web Terminal (แนะนำ)
+
+เปิด browser แล้วไปที่
+
+```
+https://app.workshop-deploy.site/terminal/
+```
+
+Login ด้วย username และ password ที่ได้รับจาก admin ได้เลย
+
+### 💻 วิธีที่ 2 — SSH (สำหรับคนที่ใช้ได้)
+
 **Windows:** กด `Win + R` พิมพ์ `cmd` แล้วกด Enter  
 **Mac / Linux:** เปิด Terminal ได้เลย
-
----
-
-## ขั้นตอน 2 — SSH เข้า Server
 
 ```bash
 ssh userXX@79.108.225.69
@@ -56,19 +66,16 @@ ssh userXX@79.108.225.69
 กรณีเข้าครั้งแรก จะถามว่าต้องการเชื่อมต่อไหม ให้ตอบ `yes`
 
 ```bash
-The authenticity of host '79.108.225.69 (79.108.225.69)' can't be established.
-ED25519 key fingerprint is SHA256:Er1Gt4t4dzWk1prroiEFKy5jJWok62sL/+xykFDthUg.
-This key is not known by any other names.
 Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
 ```
 
 ระบบจะถามรหัสผ่าน — พิมพ์แล้วกด Enter (ตัวอักษรจะไม่แสดง)
 
-```bash
-userXX@79.108.225.69's password:
-```
+---
 
-เมื่อเข้าสำเร็จจะเห็นข้อมูลของผู้ใช้นั้น ๆ
+## ขั้นตอน 2 — เข้า Terminal
+
+เมื่อเข้าสำเร็จจะเห็นข้อมูลของคุณขึ้นมาทันที
 
 ```
 ══════════════════════════════════════════════════════════
@@ -249,9 +256,9 @@ tail -f /tmp/fe_userXX.log
 ## สรุป Workflow ทั้งหมด
 
 ```
-เปิด Terminal (cmd)
+เปิด https://app.workshop-deploy.site/terminal/
        ↓
-ssh userXX@app.workshop-deploy.site
+Login ด้วย userXX / password
        ↓
 git clone <api-repo>
 git clone <frontend-repo>
@@ -297,35 +304,18 @@ export default router
 
 ---
 
-## วิธีการ Copy & Paste บน CMD
+## วิธีการ Copy & Paste บน CMD / Terminal
 
+**CMD (Windows):**
 ```
 Copy  → คลุมดำที่ข้อความที่ต้องการแล้วกดคลิกขวา (Right-Click)
 Paste → คลิกขวา (Right-Click) หรือ Shift+Insert
 ```
 
----
-
-## แก้ไขปัญหา SSH เข้าไม่ได้
-
-หาก SSH เข้า VM ไม่ได้ ให้เปลี่ยน DNS เป็น Cloudflare `1.1.1.1`
-
-#### Windows — เปิด PowerShell ด้วย Administrator แล้วรัน
-
-```powershell
-Set-DnsClientServerAddress -InterfaceAlias "Wi-Fi" -ServerAddresses "1.1.1.1","1.0.0.1"
+**Web Terminal:**
 ```
-
-#### Mac
-
-```bash
-sudo networksetup -setdnsservers Wi-Fi 1.1.1.1 1.0.0.1
-```
-
-#### Linux
-
-```bash
-sudo echo "nameserver 1.1.1.1" > /etc/resolv.conf
+Copy  → Ctrl+C หรือคลุมแล้ว Right-Click
+Paste → Ctrl+V หรือ Right-Click
 ```
 
 ---
