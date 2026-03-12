@@ -11,8 +11,24 @@
 ---
 ### แก้ไขปัญหากรณี Remote SSH เข้า VM ไม่ได้
 เปลี่ยน DNS เป็น Cloudflare `1.1.1.1`
-Windows
-
+---
+#### Windows
+```ts
+เปิด powershell ด้วย administrator และรันคำสั่ง
+```
+```ts
+Set-DnsClientServerAddress -InterfaceAlias "Wi-Fi" -ServerAddresses "1.1.1.1","1.0.0.1"
+```
+---
+#### Mac
+```ts
+sudo networksetup -setdnsservers Wi-Fi 1.1.1.1 1.0.0.1
+```
+---
+#### Linux
+```ts
+sudo echo "nameserver 1.1.1.1" > /etc/resolv.conf
+```
 ---
 
 ### วิธีการ Copy & Paste บน CMD / Console
