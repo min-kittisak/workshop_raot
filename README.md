@@ -48,9 +48,7 @@
 
 เปิด browser แล้วไปที่
 
-```
-https://app.workshop-deploy.site/terminal/
-```
+[https://app.workshop-deploy.site/terminal/](https://app.workshop-deploy.site/terminal/)
 
 Login ด้วย username และ password ที่ได้รับจาก admin ได้เลย
 
