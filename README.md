@@ -95,8 +95,18 @@ export default router
 ```bash
 ssh userXX@79.108.225.69
 ```
+กรณีเข้าครั้งแรก จะถามว่าต้องการเชื่อมต่อไหม ให้ตอบ yes
+```bash
+The authenticity of host '79.108.225.69 (79.108.225.69)' can't be established.
+ED25519 key fingerprint is SHA256:Er1Gt4t4dzWk1prroiEFKy5jJWok62sL/+xykFDthUg.
+This key is not known by any other names.
+Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
+```
 
 ระบบจะถามรหัสผ่าน — พิมพ์แล้วกด Enter (ตัวอักษรจะไม่แสดง)
+```bash
+userXX@79.108.225.69's password:
+```
 
 เมื่อเข้าสำเร็จจะเห็นข้อมูลของผู้ใช้นั้น ๆ
 
