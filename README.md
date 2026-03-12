@@ -10,6 +10,8 @@
 
 ---
 ### แก้ไขปัญหากรณี Remote SSH เข้า VM ไม่ได้
+เปลี่ยน DNS เป็น Cloudflare `1.1.1.1`
+Windows
 
 ---
 
