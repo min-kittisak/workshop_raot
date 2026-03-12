@@ -9,6 +9,9 @@
 👤 [Workshop Users](https://docs.google.com/spreadsheets/d/1e1bCiAIanqBuPEPmLy0a--kssAINRyEUJ7oKzu6RJ7E/edit?gid=18468552#gid=18468552)
 
 ---
+### แก้ไขปัญหากรณี Remote SSH เข้า VM ไม่ได้
+
+---
 
 ### วิธีการ Copy & Paste บน CMD / Console
 ```bash
