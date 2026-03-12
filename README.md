@@ -27,6 +27,10 @@ VITE_BASE_PATH=/userXX/app/
 #### src/router/index.ts
 เพิ่ม import.meta.env.BASE_URL
 ```ts
+import.meta.env.BASE_URL
+```
+---
+```ts
 import {createRouter , createWebHistory} from 'vue-router'
 import UserManagement from '../views/UserManagement.vue'
 
