@@ -1,70 +1,27 @@
 # 🚀 Workshop: Deploy .NET + Vue บน Linux VM
 
 ---
-### FYI
-หลังจากจบกิจกรรม Workshop (16:00 - 16:30 น.) ข้อมูลทั้งหมด รวมถึง VM จะถูกลบทิ้งทันที
----
 
-### Users สำหรับใช้เข้า VM
-👤 [Workshop Users](https://docs.google.com/spreadsheets/d/1e1bCiAIanqBuPEPmLy0a--kssAINRyEUJ7oKzu6RJ7E/edit?gid=18468552#gid=18468552)
+## สารบัญ
 
----
-### แก้ไขปัญหากรณี Remote SSH เข้า VM ไม่ได้
-เปลี่ยน DNS เป็น Cloudflare `1.1.1.1`
----
-#### Windows
-```ts
-เปิด powershell ด้วย administrator และรันคำสั่ง
-```
-```ts
-Set-DnsClientServerAddress -InterfaceAlias "Wi-Fi" -ServerAddresses "1.1.1.1","1.0.0.1"
-```
----
-#### Mac
-```ts
-sudo networksetup -setdnsservers Wi-Fi 1.1.1.1 1.0.0.1
-```
----
-#### Linux
-```ts
-sudo echo "nameserver 1.1.1.1" > /etc/resolv.conf
-```
----
+- [ข้อมูลที่ต้องรู้ก่อน](#ข้อมูลที่ต้องรู้ก่อน)
+- [ขั้นตอน 1 — เปิด Terminal](#ขั้นตอน-1--เปิด-terminal)
+- [ขั้นตอน 2 — SSH เข้า Server](#ขั้นตอน-2--ssh-เข้า-server)
+- [ขั้นตอน 3 — Clone Project](#ขั้นตอน-3--clone-project)
+- [ขั้นตอน 4 — ตั้งค่า Connection String ใน API](#ขั้นตอน-4--ตั้งค่า-connection-string-ใน-api)
+- [ขั้นตอน 5 — Deploy API (.NET)](#ขั้นตอน-5--deploy-api-net)
+- [ขั้นตอน 6 — Deploy Frontend (Vue)](#ขั้นตอน-6--deploy-frontend-vue)
+- [ขั้นตอน 7 — ตรวจสอบสถานะ](#ขั้นตอน-7--ตรวจสอบสถานะ)
+- [อัปเดต Code ใหม่](#อัปเดต-code-ใหม่)
+- [คำสั่งทั้งหมด](#คำสั่งทั้งหมด)
+- [ดู Log เมื่อมีปัญหา](#ดู-log-เมื่อมีปัญหา)
+- [Error ที่พบบ่อย](#error-ที่พบบ่อย)
+- [สรุป Workflow ทั้งหมด](#สรุป-workflow-ทั้งหมด)
+- [แก้ไข Code Frontend](#แก้ไข-code-frontend)
+- [วิธีการ Copy & Paste บน CMD](#วิธีการ-copy--paste-บน-cmd)
+- [แก้ไขปัญหา SSH เข้าไม่ได้](#แก้ไขปัญหา-ssh-เข้าไม่ได้)
+- [Users และข้อมูล Workshop](#users-และข้อมูล-workshop)
 
-### วิธีการ Copy & Paste บน CMD / Console
-```bash
-Copy => คลุมดำที่ข้อความที่ต้องการแล้วกดคลิกขวา (Right-Click)
-Paste => คลิกขวา (Right-Click) หรือ Shift+Insert
-```
----
-
-### แก้ไข Code ของ Frontend
-#### .env โดย XX แทนด้วยเลข User ของเรา
-```bash
-VITE_API_URL=https://app.workshop-deploy.site/user999/api/api
-VITE_BASE_PATH=/userXX/app/
-```
-
-#### src/router/index.ts
-เพิ่ม import.meta.env.BASE_URL
-```ts
-import.meta.env.BASE_URL
-```
----
-```ts
-import {createRouter , createWebHistory} from 'vue-router'
-import UserManagement from '../views/UserManagement.vue'
-
-const router = createRouter({
-    history: createWebHistory(import.meta.env.BASE_URL), // <-- แก้ไขบรรทัดนี้
-    routes:[{
-        path: '/',
-        name: 'Users',
-        component: UserManagement
-    }]
-})
-export default router
-```
 ---
 
 ## ข้อมูลที่ต้องรู้ก่อน
@@ -95,7 +52,9 @@ export default router
 ```bash
 ssh userXX@79.108.225.69
 ```
-กรณีเข้าครั้งแรก จะถามว่าต้องการเชื่อมต่อไหม ให้ตอบ yes
+
+กรณีเข้าครั้งแรก จะถามว่าต้องการเชื่อมต่อไหม ให้ตอบ `yes`
+
 ```bash
 The authenticity of host '79.108.225.69 (79.108.225.69)' can't be established.
 ED25519 key fingerprint is SHA256:Er1Gt4t4dzWk1prroiEFKy5jJWok62sL/+xykFDthUg.
@@ -104,6 +63,7 @@ Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
 ```
 
 ระบบจะถามรหัสผ่าน — พิมพ์แล้วกด Enter (ตัวอักษรจะไม่แสดง)
+
 ```bash
 userXX@79.108.225.69's password:
 ```
@@ -117,13 +77,14 @@ userXX@79.108.225.69's password:
   API URL     : https://app.workshop-deploy.site/userXX/api/
   Swagger     : https://app.workshop-deploy.site/userXX/api/swagger
   Frontend URL: https://app.workshop-deploy.site/userXX/app/
-  Database    : user01_db
+  Database    : userXX_db
   DB ConnStr  : Host=localhost;Port=5432;Database=userXX_db;
                 Username=userXX;Password=Workshop@2025
 ══════════════════════════════════════════════════════════
 ```
 
 ดูข้อมูลนี้ซ้ำได้ตลอดด้วย
+
 ```bash
 cat ~/.welcome
 ```
@@ -132,19 +93,19 @@ cat ~/.welcome
 
 ## ขั้นตอน 3 — Clone Project
 
-### Clone ทั้ง API และ Frontend
-
 ```bash
 git clone <URL-ของ-API-repo>
 git clone <URL-ของ-Frontend-repo>
 ```
 
 ตรวจสอบว่า clone มาแล้ว
+
 ```bash
 ls
 ```
 
 จะเห็น folder ของทั้งสอง project ขึ้นมา เช่น
+
 ```
 my-dotnet-api   my-vue-app
 ```
@@ -189,6 +150,7 @@ deploy
 ```
 
 ทดสอบเปิด Swagger ใน browser
+
 ```
 https://app.workshop-deploy.site/userXX/api/swagger
 ```
@@ -205,7 +167,7 @@ deploy
 ครั้งแรกอาจใช้เวลา 1–2 นาที เพราะต้อง `npm install` ก่อน เมื่อเสร็จแล้ว
 
 ```
-✅  Frontend
+✅  Frontend พร้อมแล้ว!
 🌐 URL : https://app.workshop-deploy.site/userXX/app/
 📝 Log : tail -f /tmp/fe_userXX.log
 ```
@@ -279,7 +241,7 @@ tail -f /tmp/fe_userXX.log
 | `Start ไม่ได้` | `tail -f /tmp/api_userXX.log` ดู error |
 | หน้าเว็บขาว (blank page) | `tail -f /tmp/fe_userXX.log` ดู error |
 | ข้อมูลไม่ขึ้นใน Vue | ตรวจ API URL ใน config ของ frontend |
-| `permission denied` | แจ้ง ผู้บรรยาย |
+| `permission denied` | แจ้งผู้บรรยาย |
 | `could not find .csproj` | ลองเช็คว่าเข้า folder project ถูกไหม |
 
 ---
@@ -304,3 +266,72 @@ mystatus → ตรวจสอบ RUNNING ทั้งคู่
        ↓
 เปิด browser ทดสอบ 🎉
 ```
+
+---
+
+## แก้ไข Code Frontend
+
+#### .env — แทน `XX` ด้วยเลข User ของคุณ
+
+```bash
+VITE_API_URL=https://app.workshop-deploy.site/userXX/api/api
+VITE_BASE_PATH=/userXX/app/
+```
+
+#### src/router/index.ts — เพิ่ม `import.meta.env.BASE_URL`
+
+```ts
+import { createRouter, createWebHistory } from 'vue-router'
+import UserManagement from '../views/UserManagement.vue'
+
+const router = createRouter({
+    history: createWebHistory(import.meta.env.BASE_URL), // <-- แก้ไขบรรทัดนี้
+    routes: [{
+        path: '/',
+        name: 'Users',
+        component: UserManagement
+    }]
+})
+export default router
+```
+
+---
+
+## วิธีการ Copy & Paste บน CMD
+
+```
+Copy  → คลุมดำที่ข้อความที่ต้องการแล้วกดคลิกขวา (Right-Click)
+Paste → คลิกขวา (Right-Click) หรือ Shift+Insert
+```
+
+---
+
+## แก้ไขปัญหา SSH เข้าไม่ได้
+
+หาก SSH เข้า VM ไม่ได้ ให้เปลี่ยน DNS เป็น Cloudflare `1.1.1.1`
+
+#### Windows — เปิด PowerShell ด้วย Administrator แล้วรัน
+
+```powershell
+Set-DnsClientServerAddress -InterfaceAlias "Wi-Fi" -ServerAddresses "1.1.1.1","1.0.0.1"
+```
+
+#### Mac
+
+```bash
+sudo networksetup -setdnsservers Wi-Fi 1.1.1.1 1.0.0.1
+```
+
+#### Linux
+
+```bash
+sudo echo "nameserver 1.1.1.1" > /etc/resolv.conf
+```
+
+---
+
+## Users และข้อมูล Workshop
+
+👤 [Workshop Users](https://docs.google.com/spreadsheets/d/1e1bCiAIanqBuPEPmLy0a--kssAINRyEUJ7oKzu6RJ7E/edit?gid=18468552#gid=18468552)
+
+> ⚠️ หลังจากจบกิจกรรม Workshop (16:00 - 16:30 น.) ข้อมูลทั้งหมด รวมถึง VM จะถูกลบทิ้งทันที
